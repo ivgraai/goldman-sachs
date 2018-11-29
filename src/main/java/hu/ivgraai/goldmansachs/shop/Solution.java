@@ -90,7 +90,7 @@ public class Solution {
     }
 
     private static Data selection(List<Data> items, BiPredicate<Data, Data> predicate) {
-        if ((null == items) || items.isEmpty()) {
+        if (null == items) {
             Data extreme = new Data();
             extreme.setPrice(null);
             return extreme;

@@ -50,7 +50,7 @@ public class Solution {
     };
 
     /**
-     * TODO: Implement Me!
+     * Implement Me!
      *
      * @param x
      * @param y
@@ -70,7 +70,7 @@ public class Solution {
         for (int[] move : obtainNextPositions(x, y)) {
             sum += probability(move[0], move[1], n - 1);
         }
-        return (retval * sum / (8 * retval));
+        return (retval * sum / (BOARD_SIZE * retval));
     }
 
     private static List<int[]> obtainNextPositions(int x, int y) {
@@ -85,11 +85,11 @@ public class Solution {
     }
 
     private static boolean isOnBoard(int x, int y) {
-        return (0 <= x && 0 <= y && x <= 7 && y <= 7);
+        return (0 <= x && 0 <= y && x < BOARD_SIZE && y < BOARD_SIZE);
     }
 
     private static boolean doTestsPass() {
-        // Please feel free to make testing more elegant
+        // Todo please feel free to make testing more elegant
         boolean result = true;
         // Start in a corner, no moves
         result = result && probability(0, 0, 0) == 1.0;

@@ -2,12 +2,14 @@ package hu.ivgraai.goldmansachs.shop;
 
 /**
  * @author ivgraai
+ * @param <R>
+ * @param <S>
  * @since 27th November
  */
-class Pair<R, S> {
+public class Pair<R, S> {
 
-    private final R first;
-    private final S second;
+    protected final R first;
+    protected final S second;
 
     public Pair(R first, S second) {
         this.first = first;
