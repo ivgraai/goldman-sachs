@@ -6,6 +6,8 @@ import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.LinkedHashSet;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
@@ -29,6 +31,8 @@ public class Solutions {
 
         /* int n = 3;
         powerof(System.out, 10, n); */
+
+        // System.out.println(climb(4, 3));
     }
 
     public static List<String> unfold(String value) {
@@ -129,6 +133,41 @@ public class Solutions {
             return;
         }
         recursion(out, base, exponent, n + 1, value.multiply(base));
+    }
+
+    public static Collection<List<Integer>> climb(int staircase, int step) {
+        Set<List<Integer>> permutations = new LinkedHashSet<>();
+
+        List<Integer> temp = new ArrayList<>();
+        for (int i = 0; i < staircase; ++i) {
+            temp.add(1);
+        }
+        permutations.add(temp);
+
+        LinkedList<List<Integer>> queue = new LinkedList<>();
+        queue.add(temp);
+        while (!queue.isEmpty()) {
+
+            List<Integer> pop = queue.removeFirst();
+            for (int i = 1; i < pop.size(); ++i) {
+                if (step < pop.get(i - 1) + pop.get(i)) {
+                    continue;
+                }
+                temp = new ArrayList<>();
+                for (int j = 0; j < i - 1; ++j) {
+                    temp.add(pop.get(j));
+                }
+                temp.add(pop.get(i - 1) + pop.get(i));
+                for (int j = i + 1; j < pop.size(); ++j) {
+                    temp.add(pop.get(j));
+                }
+                permutations.add(temp);
+                queue.addLast(temp);
+            }
+
+        }
+
+        return permutations;
     }
 
 }
